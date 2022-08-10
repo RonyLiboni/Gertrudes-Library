@@ -1,4 +1,4 @@
-package br.com.gers_library.entities;
+package br.com.gers_library.entities.library_user;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

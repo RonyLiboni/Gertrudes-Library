@@ -1,4 +1,4 @@
-package br.com.gers_library.entities;
+package br.com.gers_library.entities.library_user;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+
 import lombok.Getter;
 import lombok.Setter;
 

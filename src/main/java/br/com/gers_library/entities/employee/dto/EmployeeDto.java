@@ -1,11 +1,8 @@
-package br.com.gers_library.entities.dtos;
+package br.com.gers_library.entities.employee.dto;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import br.com.gers_library.entities.Employee;
+import br.com.gers_library.entities.employee.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,30 +14,30 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeFormDto {
+public class EmployeeDto {
 	
-	@NotBlank
 	private String fullName;
-	@NotBlank
 	private String documentCpf;
-	@NotBlank 
 	private String cep;
-	@NotBlank
+	private String street;
 	private Integer streetNumber;
 	private String complement;
-	@NotBlank
+	private String district;
+	private String city;
 	private String jobTitle;
-	@NotNull
 	private LocalDate hireDate;
 	
-	public EmployeeFormDto(Employee employee) {
+	public EmployeeDto(Employee employee) {
 		this.fullName = employee.getFullName();
 		this.documentCpf = employee.getDocumentCpf();
 		this.cep = employee.getAddress().getCep();
-		this.jobTitle = employee.getJobTitle();
-		this.hireDate = employee.getHireDate();
+		this.street = employee.getAddress().getStreet();
 		this.streetNumber = employee.getAddress().getStreetNumber();
 		this.complement = employee.getAddress().getComplement();
+		this.district = employee.getAddress().getDistrict();
+		this.city = employee.getAddress().getCity();
+		this.jobTitle = employee.getJobTitle();
+		this.hireDate = employee.getHireDate();
 	}
 
 }
