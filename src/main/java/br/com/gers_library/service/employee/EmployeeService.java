@@ -2,24 +2,27 @@ package br.com.gers_library.service.employee;
 
 import javax.transaction.Transactional;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.repositories.EmployeeRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmployeeService {
 	
 	private final EmployeeRepository employeeRepository;
-	private final ModelMapper modelMapper;
 	
 	public EmployeeDto registerEmployee(EmployeeFormDto form) {
-		return new EmployeeDto(saveInDataBase(modelMapper.map(form, Employee.class)));
+		return new EmployeeDto(saveInDataBase(Employee.builder()
+				.fullName(form.getFullName())
+				.documentCpf(form.getDocumentCpf())
+				.jobTitle(form.getJobTitle())
+				.address(null)
+				.build()));
 	}
 	
 	@Transactional

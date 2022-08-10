@@ -9,13 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class LibraryUser {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.TABLE)
