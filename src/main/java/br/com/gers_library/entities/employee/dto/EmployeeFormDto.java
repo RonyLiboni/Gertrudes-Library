@@ -25,7 +25,7 @@ public class EmployeeFormDto {
 	private String documentCpf;
 	@NotBlank 
 	private String cep;
-	@NotBlank
+	@NotNull
 	private Integer streetNumber;
 	private String complement;
 	@NotBlank
