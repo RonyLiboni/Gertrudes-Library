@@ -16,16 +16,16 @@ public class Address {
 	private String cep;
 	
 	@Column(nullable = false, length = 100)
-	private String logradouro;
+	private String street;
 	
 	@Column(nullable = false, length = 100)
-	private Integer numero;
+	private Integer streetNumber;
 	
-	private String complemento;
-	
-	@Column(nullable = false, length = 100)
-	private String bairro;
+	private String complement;
 	
 	@Column(nullable = false, length = 100)
-	private String cidade;
+	private String district;
+	
+	@Column(nullable = false, length = 100)
+	private String city;
 }
