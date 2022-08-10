@@ -2,8 +2,6 @@ package br.com.gers_library.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.Size;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
