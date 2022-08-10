@@ -21,8 +21,8 @@ public abstract class LibraryUser {
 	private Long id;
 	@Column(nullable = false)
 	private String fullName;
-	@Column(nullable = false, length = 11)
-	private String cpf;
+	@Column(nullable = false, length = 11, unique = true)
+	private String documentCpf;
 	@Embedded
 	private Address address;
 	
