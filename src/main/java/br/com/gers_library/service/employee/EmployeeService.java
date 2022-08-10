@@ -2,6 +2,7 @@ package br.com.gers_library.service.employee;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import br.com.gers_library.entities.employee.Employee;
@@ -18,7 +19,7 @@ public class EmployeeService {
 	private final ModelMapper modelMapper;
 	
 	public EmployeeDto registerEmployee(EmployeeFormDto form) {
-		return saveInDataBase(modelMapper.map(form, Employee.class));
+		return new EmployeeDto(saveInDataBase(modelMapper.map(form, Employee.class)));
 	}
 	
 	@Transactional
