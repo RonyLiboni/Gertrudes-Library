@@ -1,13 +1,13 @@
-package br.com.bibliotecadager;
+package br.com.gers_library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BibliotecaDaGerApplication {
+public class GersLibraryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BibliotecaDaGerApplication.class, args);
+		SpringApplication.run(GersLibraryApplication.class, args);
 	}
 
 }
