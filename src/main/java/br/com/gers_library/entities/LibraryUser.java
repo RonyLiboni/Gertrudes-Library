@@ -1,5 +1,6 @@
 package br.com.gers_library.entities;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,9 @@ public abstract class LibraryUser {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
-	private String nome;
+	private String fullName;
 	private String cpf;
-	private Endereco endereco;
+	@Embedded
+	private Address address;
 	
 }
