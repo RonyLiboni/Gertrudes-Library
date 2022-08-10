@@ -19,11 +19,11 @@ public class EmployeeDto {
 	private String fullName;
 	private String documentCpf;
 	private String cep;
-	private String logradouro;
-	private Integer numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
+	private String street;
+	private Integer streetNumber;
+	private String complement;
+	private String district;
+	private String city;
 	private String jobTitle;
 	private LocalDate hireDate;
 	
@@ -31,11 +31,11 @@ public class EmployeeDto {
 		this.fullName = employee.getFullName();
 		this.documentCpf = employee.getDocumentCpf();
 		this.cep = employee.getAddress().getCep();
-		this.logradouro = employee.getAddress().getLogradouro();
-		this.numero = employee.getAddress().getNumero();
-		this.complemento = employee.getAddress().getComplemento();
-		this.bairro = employee.getAddress().getBairro();
-		this.cidade = employee.getAddress().getCidade();
+		this.street = employee.getAddress().getStreet();
+		this.streetNumber = employee.getAddress().getStreetNumber();
+		this.complement = employee.getAddress().getComplement();
+		this.district = employee.getAddress().getDistrict();
+		this.city = employee.getAddress().getCity();
 		this.jobTitle = employee.getJobTitle();
 		this.hireDate = employee.getHireDate();
 	}

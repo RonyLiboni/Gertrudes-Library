@@ -26,6 +26,9 @@ public class EmployeeFormDto {
 	@NotBlank 
 	private String cep;
 	@NotBlank
+	private Integer numero;
+	private String complemento;
+	@NotBlank
 	private String jobTitle;
 	@NotNull
 	private LocalDate hireDate;
@@ -36,6 +39,8 @@ public class EmployeeFormDto {
 		this.cep = employee.getAddress().getCep();
 		this.jobTitle = employee.getJobTitle();
 		this.hireDate = employee.getHireDate();
+		this.numero = employee.getAddress().getNumero();
+		this.complemento = employee.getAddress().getComplemento();
 	}
 
 }
