@@ -1,10 +1,10 @@
-package br.com.bibliotecadager;
+package br.com.gers_library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BibliotecaDaGerApplicationTests {
+class GerLibraryApplicationTests {
 
 	@Test
 	void contextLoads() {
