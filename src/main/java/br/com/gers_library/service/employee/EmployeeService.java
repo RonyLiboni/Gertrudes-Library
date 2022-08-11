@@ -15,13 +15,15 @@ import lombok.RequiredArgsConstructor;
 public class EmployeeService {
 	
 	private final EmployeeRepository employeeRepository;
+	private final AddressService addressService;
 	
 	public EmployeeDto registerEmployee(EmployeeFormDto form) {
 		return new EmployeeDto(saveInDataBase(Employee.builder()
 				.fullName(form.getFullName())
 				.documentCpf(form.getDocumentCpf())
 				.jobTitle(form.getJobTitle())
-				.address(null)
+				.hireDate(form.getHireDate())
+				.address(addressService.buildAdress(form.getCep(),form.getStreetNumber(), form.getComplement()))
 				.build()));
 	}
 	
