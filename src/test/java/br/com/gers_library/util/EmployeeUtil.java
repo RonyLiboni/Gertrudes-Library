@@ -3,8 +3,11 @@ package br.com.gers_library.util;
 import java.time.LocalDate;
 
 import br.com.gers_library.entities.employee.Employee;
+import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 
 public class EmployeeUtil {
+
+	public static EmployeeFormDto buildValidatedEmployeeFormDto;
 
 	public static Employee buildValidatedEntity() {
 		return Employee.builder()
@@ -18,6 +21,10 @@ public class EmployeeUtil {
 	
 	public static Employee buildNotValidatedEntity() {
 		return Employee.builder().build();
+	}
+
+	public static EmployeeFormDto buildValidatedEmployeeFormDto() {
+		return new EmployeeFormDto(buildValidatedEntity());
 	}
 
 }
