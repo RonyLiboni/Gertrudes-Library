@@ -14,7 +14,7 @@ public class AddressService {
 	private final CepConsumerFeign cepConsumer;
 	
 	public Address buildAdress(String cep, Integer streetNumber, String complement) {
-		ViaCepAddress viaCepAddress = cepConsumer.getFullAddres(cep);
+		ViaCepAddress viaCepAddress = cepConsumer.getFullAddres(cep).getBody();
 		return Address.builder()
 				.cep(cep)
 				.street(viaCepAddress.getLogradouro())
