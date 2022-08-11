@@ -7,9 +7,11 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.http.ResponseEntity;
 
 import br.com.gers_library.entities.library_user.Address;
 import br.com.gers_library.http.CepConsumerFeign;
+import br.com.gers_library.http.ViaCepAddress;
 import br.com.gers_library.util.AddressUtil;
 
 class AddressServiceTest extends ServiceTestTemplate{
@@ -22,7 +24,7 @@ class AddressServiceTest extends ServiceTestTemplate{
 	@Test
 	void buildAddress_ShouldReturnAnAddress_WhenCepExists() {
 		Mockito.when(cepConsumerMock.getFullAddres(ArgumentMatchers.anyString()))
-				.thenReturn(AddressUtil.buildViaCepAddress());
+				.thenReturn(ResponseEntity.ok(AddressUtil.buildViaCepAddress()));
 		
 		Address fullAddress = addressService.buildAdress("01001-000", 1, "lado ímpar");
 		
