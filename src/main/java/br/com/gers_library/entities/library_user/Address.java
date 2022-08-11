@@ -2,14 +2,19 @@ package br.com.gers_library.entities.library_user;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 	
 	@Column(nullable = false, length = 8)
