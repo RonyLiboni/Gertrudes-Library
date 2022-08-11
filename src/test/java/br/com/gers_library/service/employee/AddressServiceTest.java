@@ -24,9 +24,16 @@ class AddressServiceTest extends ServiceTestTemplate{
 		Mockito.when(cepConsumerMock.getFullAddres(ArgumentMatchers.anyString()))
 				.thenReturn(AddressUtil.buildViaCepAddress());
 		
-		assertThat(addressService.buildAdress("01001-000", 1, "lado ímpar"))
+		Address fullAddress = addressService.buildAdress("01001-000", 1, "lado ímpar");
+		
+		assertThat(fullAddress)
 			.isExactlyInstanceOf(Address.class)
-			.isNotNull();	
+			.isNotNull();
+		
+		assertThat(fullAddress.getCity()).isNotNull();
+		assertThat(fullAddress.getDistrict()).isNotNull();
+		assertThat(fullAddress.getStreet()).isNotNull();
+		assertThat(fullAddress.getCity()).isNotNull();
 	}
 	
 	
