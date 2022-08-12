@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.gers_library.entities.IdNotFoundException;
 import br.com.gers_library.entities.exception.FieldErrorsDto;
 import lombok.RequiredArgsConstructor;
 
@@ -30,8 +31,8 @@ public class ExceptionHandlerController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(fieldErrorsdto);
 	}
 	
-	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<String> idNotFound(Exception e){
+	@ExceptionHandler(IdNotFoundException.class)
+	public ResponseEntity<String> idNotFound(IdNotFoundException e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
 		

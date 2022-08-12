@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.gers_library.entities.IdNotFoundException;
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
@@ -53,7 +54,7 @@ public class EmployeeService {
 	}
 
 	private Employee getById(Long id) {
-		return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("This employee id doesn't exist"));
+		return employeeRepository.findById(id).orElseThrow(() -> new IdNotFoundException("This employee id doesn't exist"));
 	}
 
 	@Transactional
