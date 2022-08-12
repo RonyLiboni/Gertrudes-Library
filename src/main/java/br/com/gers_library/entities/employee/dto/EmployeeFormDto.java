@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.validation.cep.CepExists;
-import br.com.gers_library.validation.document_cpf.UniqueDocumentCpf;
+import br.com.gers_library.validation.document_cpf.DocumentCpfIsValid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class EmployeeFormDto {
 	@NotBlank
 	private String fullName;
 	@NotBlank
-	@UniqueDocumentCpf
+	@DocumentCpfIsValid
 	private String documentCpf;
 	@NotBlank 
 	@CepExists

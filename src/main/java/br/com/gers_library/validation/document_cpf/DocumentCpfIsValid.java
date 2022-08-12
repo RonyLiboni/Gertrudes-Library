@@ -11,7 +11,7 @@ import javax.validation.Payload;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = DocumentCpfValidator.class)
-public @interface UniqueDocumentCpf {
+public @interface DocumentCpfIsValid {
 	
 	String message() default "You must write a valid CPF!";
 
