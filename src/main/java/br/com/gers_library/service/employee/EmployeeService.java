@@ -55,4 +55,8 @@ public class EmployeeService {
 	private Employee getById(Long id) {
 		return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("This employee id doesn't exist"));
 	}
+
+	public void deleteById(Long id) {
+		employeeRepository.delete(getById(id));
+	}
 }
