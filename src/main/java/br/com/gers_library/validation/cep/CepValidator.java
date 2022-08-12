@@ -3,6 +3,7 @@ package br.com.gers_library.validation.cep;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import br.com.gers_library.http.ViaCepAddress;
 
@@ -21,7 +22,11 @@ public class CepValidator implements ConstraintValidator<CepExists, String>{
 	}
 	
 	private HttpStatus getStatusCodeFromViaCep(String cep) {
-		return new RestTemplate().getForEntity(url+ cep + "/json/", ViaCepAddress.class).getStatusCode();
+		try {
+			return new RestTemplate().getForEntity(url+ cep + "/json/", ViaCepAddress.class).getStatusCode();
+		} catch (RestClientException e) {
+			return HttpStatus.BAD_REQUEST;
+		}
 	}
 
 }
