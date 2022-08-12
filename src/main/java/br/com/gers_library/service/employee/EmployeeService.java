@@ -1,10 +1,9 @@
 package br.com.gers_library.service.employee;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.gers_library.entities.employee.Employee;
@@ -41,11 +40,19 @@ public class EmployeeService {
 		return employeeRepository.save(employee);
 	}
 	
-	public List<Employee> getAll(){
-		return employeeRepository.findAll();
+	public Page<Employee> getAll(Pageable page){
+		return employeeRepository.findAll(page);
 	}
 	
-	public List<EmployeeDto> getAllDto(){
-		return getAll().stream().map(EmployeeDto::new).collect(Collectors.toList());
+	public Page<EmployeeDto> getAllDto(Pageable page){
+		return getAll(page).map(EmployeeDto::new);
+	}
+
+	public EmployeeDto getDtoById(Long id) {
+		return new EmployeeDto(getById(id));
+	}
+
+	private Employee getById(Long id) {
+		return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("This employee id doesn't exist"));
 	}
 }
