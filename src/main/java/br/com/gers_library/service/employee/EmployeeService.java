@@ -13,23 +13,29 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
-	
+
 	private final EmployeeRepository employeeRepository;
 	private final AddressService addressService;
-	
+
 	public EmployeeDto registerEmployee(EmployeeFormDto form) {
 		return new EmployeeDto(saveInDataBase(Employee.builder()
 				.fullName(form.getFullName())
-				.documentCpf(form.getDocumentCpf())
+				.documentCpf(letStringOnlyWithNumbers(form.getDocumentCpf()))
 				.jobTitle(form.getJobTitle())
 				.hireDate(form.getHireDate())
-				.address(addressService.buildAdress(form.getCep(),form.getStreetNumber(), form.getComplement()))
+				.address(addressService.buildAdress(letStringOnlyWithNumbers(form.getCep()),
+						form.getStreetNumber(),
+						form.getComplement()))
 				.build()));
 	}
-	
+
+	private String letStringOnlyWithNumbers(String string) {
+		return string.replaceAll("[^0-9]", "");
+	}
+
 	@Transactional
 	public Employee saveInDataBase(Employee employee) {
 		return employeeRepository.save(employee);
 	}
-	
+
 }
