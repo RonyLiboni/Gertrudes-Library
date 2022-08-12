@@ -1,4 +1,4 @@
-package br.com.gers_library.service.employee;
+package br.com.gers_library.service.address;
 
 import org.springframework.stereotype.Service;
 
