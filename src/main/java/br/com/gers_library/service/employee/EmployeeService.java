@@ -1,5 +1,8 @@
 package br.com.gers_library.service.employee;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -37,5 +40,12 @@ public class EmployeeService {
 	public Employee saveInDataBase(Employee employee) {
 		return employeeRepository.save(employee);
 	}
-
+	
+	public List<Employee> getAll(){
+		return employeeRepository.findAll();
+	}
+	
+	public List<EmployeeDto> getAllDto(){
+		return getAll().stream().map(EmployeeDto::new).collect(Collectors.toList());
+	}
 }
