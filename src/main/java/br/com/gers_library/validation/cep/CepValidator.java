@@ -13,6 +13,9 @@ public class CepValidator implements ConstraintValidator<CepExists, String>{
 	
 	@Override
 	public boolean isValid(String cep, ConstraintValidatorContext context) {
+		if(cep == null)
+			return false;
+		
 		cep = cep.replaceAll("[^0-9]", "");
 		
 		if (getStatusCodeFromViaCep(cep) == HttpStatus.OK)
