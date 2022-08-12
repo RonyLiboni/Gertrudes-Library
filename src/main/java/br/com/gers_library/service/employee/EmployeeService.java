@@ -11,11 +11,12 @@ import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
 import br.com.gers_library.repositories.EmployeeRepository;
+import br.com.gers_library.service.template.ServiceTemplate;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class EmployeeService {
+public class EmployeeService extends ServiceTemplate{
 
 	private final EmployeeRepository employeeRepository;
 	private final AddressService addressService;
@@ -30,10 +31,6 @@ public class EmployeeService {
 						form.getStreetNumber(),
 						form.getComplement()))
 				.build()));
-	}
-
-	private String letStringOnlyWithNumbers(String string) {
-		return string.replaceAll("[^0-9]", "");
 	}
 
 	@Transactional
@@ -69,7 +66,7 @@ public class EmployeeService {
 	private Employee mapAndUpdateAtribbutes(Long id, EmployeeFormDto form) {
 		Employee employeeToBeUpdated = getById(id);
 		employeeToBeUpdated.setFullName(form.getFullName());
-		employeeToBeUpdated.setDocumentCpf(form.getDocumentCpf());
+		employeeToBeUpdated.setDocumentCpf(letStringOnlyWithNumbers(form.getDocumentCpf()));
 		employeeToBeUpdated.setJobTitle(form.getJobTitle());
 		employeeToBeUpdated.setHireDate(form.getHireDate());
 		employeeToBeUpdated.setAddress(addressService.buildAdress(letStringOnlyWithNumbers(form.getCep()),
