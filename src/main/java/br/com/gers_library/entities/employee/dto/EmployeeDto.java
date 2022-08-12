@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmployeeDto {
 	
+	private Long id;
 	private String fullName;
 	private String documentCpf;
 	private String cep;
@@ -28,6 +29,7 @@ public class EmployeeDto {
 	private LocalDate hireDate;
 	
 	public EmployeeDto(Employee employee) {
+		this.id = employee.getId();
 		this.fullName = employee.getFullName();
 		this.documentCpf = employee.getDocumentCpf();
 		this.cep = employee.getAddress().getCep();
@@ -38,6 +40,7 @@ public class EmployeeDto {
 		this.city = employee.getAddress().getCity();
 		this.jobTitle = employee.getJobTitle();
 		this.hireDate = employee.getHireDate();
+		
 	}
 
 }
