@@ -1,4 +1,4 @@
-package br.com.gers_library.entities;
+package br.com.gers_library.entities.exception;
 
 public class IdNotFoundException extends RuntimeException {
 	

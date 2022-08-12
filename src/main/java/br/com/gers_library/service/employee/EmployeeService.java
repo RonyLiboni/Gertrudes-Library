@@ -6,10 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.gers_library.entities.IdNotFoundException;
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
+import br.com.gers_library.entities.exception.IdNotFoundException;
 import br.com.gers_library.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 

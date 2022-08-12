@@ -9,8 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import br.com.gers_library.entities.IdNotFoundException;
 import br.com.gers_library.entities.exception.FieldErrorsDto;
+import br.com.gers_library.entities.exception.IdNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @RestControllerAdvice
