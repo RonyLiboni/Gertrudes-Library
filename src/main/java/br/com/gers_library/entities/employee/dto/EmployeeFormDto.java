@@ -23,10 +23,8 @@ public class EmployeeFormDto {
 	
 	@NotBlank
 	private String fullName;
-	@NotBlank
 	@DocumentCpfIsValid
-	private String documentCpf;
-	@NotBlank 
+	private String documentCpf; 
 	@CepExists
 	private String cep;
 	@NotNull
