@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.service.employee.EmployeeService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/v1/admin/employee")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmployeeController {
 	
 	private final EmployeeService employeeService;
