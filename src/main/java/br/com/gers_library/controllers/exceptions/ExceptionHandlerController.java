@@ -29,6 +29,11 @@ public class ExceptionHandlerController {
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(fieldErrorsdto);
 	}
+	
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<String> idNotFound(Exception e){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+	}
 		
 	
 }
