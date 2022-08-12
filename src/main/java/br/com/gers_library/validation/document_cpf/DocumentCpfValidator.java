@@ -3,10 +3,10 @@ package br.com.gers_library.validation.document_cpf;
 import java.util.InputMismatchException;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import org.hibernate.validator.constraints.br.CPF;
 
-public class DocumentCpfValidator implements ConstraintValidator<CPF, String> {
-
+public class DocumentCpfValidator implements ConstraintValidator<UniqueDocumentCpf, String> {
+	
+	@Override
 	public boolean isValid(String cpf, ConstraintValidatorContext context) {
 		if (cpf == null)
 			return false;
