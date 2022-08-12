@@ -49,5 +49,9 @@ public class EmployeeController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody @Valid EmployeeFormDto form) {
+		return ResponseEntity.status(HttpStatus.OK).body(employeeService.updateEmployee(id, form));
+	}
 	
 }

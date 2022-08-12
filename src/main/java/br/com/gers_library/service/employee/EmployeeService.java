@@ -56,7 +56,25 @@ public class EmployeeService {
 		return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("This employee id doesn't exist"));
 	}
 
+	@Transactional
 	public void deleteById(Long id) {
 		employeeRepository.delete(getById(id));
+	}
+
+	public EmployeeDto updateEmployee(Long id, EmployeeFormDto form) {
+		return new EmployeeDto(mapAndUpdateAtribbutes(id, form));
+	}
+
+	private Employee mapAndUpdateAtribbutes(Long id, EmployeeFormDto form) {
+		Employee employeeToBeUpdated = getById(id);
+		employeeToBeUpdated.setFullName(form.getFullName());
+		employeeToBeUpdated.setDocumentCpf(form.getDocumentCpf());
+		employeeToBeUpdated.setJobTitle(form.getJobTitle());
+		employeeToBeUpdated.setHireDate(form.getHireDate());
+		employeeToBeUpdated.setAddress(addressService.buildAdress(letStringOnlyWithNumbers(form.getCep()),
+						form.getStreetNumber(),
+						form.getComplement()));
+		
+		return saveInDataBase(employeeToBeUpdated);
 	}
 }
