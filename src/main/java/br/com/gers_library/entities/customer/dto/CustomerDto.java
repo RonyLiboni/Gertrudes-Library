@@ -24,8 +24,6 @@ public class CustomerDto {
 	private String complement;
 	private String district;
 	private String city;
-	private String jobTitle;
-	private LocalDate hireDate;
 	
 	public CustomerDto(Customer customer) {
 		this.fullName = customer.getFullName();
