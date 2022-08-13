@@ -1,7 +1,5 @@
 package br.com.gers_library.entities.customer.dto;
 
-import java.time.LocalDate;
-
 import br.com.gers_library.entities.customer.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
