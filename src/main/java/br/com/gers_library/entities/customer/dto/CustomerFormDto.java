@@ -1,6 +1,7 @@
 package br.com.gers_library.entities.customer.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import br.com.gers_library.entities.customer.Customer;
 import br.com.gers_library.validation.cep.CepExists;
@@ -23,7 +24,7 @@ public class CustomerFormDto {
 	private String documentCpf;
 	@CepExists
 	private String cep;
-	@NotBlank
+	@NotNull
 	private Integer streetNumber;
 	private String complement;
 	
