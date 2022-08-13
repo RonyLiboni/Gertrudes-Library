@@ -3,6 +3,8 @@ package br.com.gers_library.entities.customer.dto;
 import javax.validation.constraints.NotBlank;
 
 import br.com.gers_library.entities.customer.Customer;
+import br.com.gers_library.validation.cep.CepExists;
+import br.com.gers_library.validation.document_cpf.DocumentCpfIsValid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,9 +19,9 @@ import lombok.Setter;
 public class CustomerFormDto {
 	@NotBlank
 	private String fullName;
-	@NotBlank
+	@DocumentCpfIsValid
 	private String documentCpf;
-	@NotBlank 
+	@CepExists
 	private String cep;
 	@NotBlank
 	private Integer streetNumber;
