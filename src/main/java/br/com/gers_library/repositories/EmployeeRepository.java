@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
-	@Query(value = "SELECT cep, street, district, COUNT(cep) as cep_count "
+	@Query(value = "SELECT cep, street, district, COUNT(cep) as cepCount "
 			+ "FROM employees "
 			+ "GROUP BY cep "
-			+ "ORDER BY cep_count DESC "
+			+ "ORDER BY cepCount DESC "
 			+ "LIMIT 1", nativeQuery = true)
 	 HighestIncidenceCepProjection getCepWithTheHighestIncidence();
 }
