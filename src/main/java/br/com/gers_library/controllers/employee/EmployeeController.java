@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
+import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 import br.com.gers_library.service.employee.EmployeeService;
 import lombok.RequiredArgsConstructor;
 
@@ -53,5 +54,11 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody @Valid EmployeeFormDto form) {
 		return ResponseEntity.status(HttpStatus.OK).body(employeeService.updateEmployee(id, form));
 	}
+	
+	@GetMapping("/highest-incidence-cep")
+	public ResponseEntity<HighestIncidenceCepProjection> getHighestIncidenceCep(){
+		return ResponseEntity.status(HttpStatus.OK).body(employeeService.highestIncidenceCep());
+	}
+	
 	
 }

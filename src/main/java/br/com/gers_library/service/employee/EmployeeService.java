@@ -11,6 +11,7 @@ import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
 import br.com.gers_library.repositories.EmployeeRepository;
+import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 import br.com.gers_library.service.address.AddressService;
 import br.com.gers_library.service.template.ServiceTemplate;
 import lombok.RequiredArgsConstructor;
@@ -75,5 +76,10 @@ public class EmployeeService extends ServiceTemplate{
 						form.getComplement()));
 		
 		return saveInDataBase(employeeToBeUpdated);
+	}
+
+	public HighestIncidenceCepProjection highestIncidenceCep() {
+		
+		return employeeRepository.getCepWithTheHighestIncidence();
 	}
 }
