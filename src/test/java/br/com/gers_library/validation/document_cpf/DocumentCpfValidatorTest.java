@@ -3,9 +3,11 @@ package br.com.gers_library.validation.document_cpf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.validation.ConstraintValidatorContext;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
 import br.com.gers_library.service.employee.ServiceTestTemplate;
 
 class DocumentCpfValidatorTest extends ServiceTestTemplate{

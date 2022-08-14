@@ -1,6 +1,7 @@
 package br.com.gers_library.validation.document_cpf;
 
 import java.util.InputMismatchException;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

@@ -1,5 +1,8 @@
 package br.com.gers_library.service.employee;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -77,9 +80,13 @@ public class EmployeeService extends ServiceTemplate{
 		
 		return saveInDataBase(employeeToBeUpdated);
 	}
-
-	public HighestIncidenceCepProjection highestIncidenceCep() {
-		
-		return employeeRepository.getCepWithTheHighestIncidence();
+	
+	public List<HighestIncidenceCepProjection> highestIncidenceCep() {
+		List<HighestIncidenceCepProjection> cepsOrderedByCountDesc = employeeRepository.getOrderedCepCount();
+		final int highestCepCount = cepsOrderedByCountDesc.get(0).getCepCount();
+		return cepsOrderedByCountDesc.stream()
+				.filter(orderedCep -> orderedCep.getCepCount() == highestCepCount)
+				.collect(Collectors.toList());
 	}
+
 }

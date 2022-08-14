@@ -1,5 +1,7 @@
 package br.com.gers_library.controllers.employee;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -56,7 +58,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/highest-incidence-cep")
-	public ResponseEntity<HighestIncidenceCepProjection> getHighestIncidenceCep(){
+	public ResponseEntity<List<HighestIncidenceCepProjection>> getHighestIncidenceCep(){
 		return ResponseEntity.status(HttpStatus.OK).body(employeeService.highestIncidenceCep());
 	}
 	
