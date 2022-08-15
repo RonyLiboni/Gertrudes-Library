@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerDto {
 	
+	private Long id;
 	private String fullName;
 	private String documentCpf;
 	private String cep;
@@ -32,6 +33,7 @@ public class CustomerDto {
 		this.complement = customer.getAddress().getComplement();
 		this.district = customer.getAddress().getDistrict();
 		this.city = customer.getAddress().getCity();
+		this.id = customer.getId();
 	}
 
 }
