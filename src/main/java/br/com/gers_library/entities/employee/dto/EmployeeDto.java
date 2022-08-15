@@ -3,6 +3,7 @@ package br.com.gers_library.entities.employee.dto;
 import java.time.LocalDate;
 
 import br.com.gers_library.entities.employee.Employee;
+import br.com.gers_library.entities.library_user.LibraryUser;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
