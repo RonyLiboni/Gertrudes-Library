@@ -1,5 +1,8 @@
 package br.com.gers_library.service.customer;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -11,6 +14,7 @@ import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
 import br.com.gers_library.repositories.customer.CustomerRepository;
+import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 import br.com.gers_library.service.address.AddressService;
 import br.com.gers_library.service.template.ServiceTemplate;
 import lombok.RequiredArgsConstructor;
@@ -71,5 +75,13 @@ public class CustomerService extends ServiceTemplate{
 						form.getComplement()));
 		
 		return saveInDataBase(customerToBeUpdated);
+	}
+	
+	public List<HighestIncidenceCepProjection> highestIncidenceCep() {
+		List<HighestIncidenceCepProjection> cepsOrderedByCountDesc = customerRepository.getOrderedCepCount();
+		final int highestCepCount = cepsOrderedByCountDesc.get(0).getCepCount();
+		return cepsOrderedByCountDesc.stream()
+				.filter(orderedCep -> orderedCep.getCepCount() == highestCepCount)
+				.collect(Collectors.toList());
 	}
 }
