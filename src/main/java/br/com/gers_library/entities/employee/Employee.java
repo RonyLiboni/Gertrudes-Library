@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import br.com.gers_library.entities.library_user.Address;
 import br.com.gers_library.entities.library_user.LibraryUser;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Employee extends LibraryUser {
+	
 	@Column(nullable = false, length = 100)
+	@Schema(example = "Operations Director")
 	private String jobTitle;
+	
 	@Column(nullable = false)
+	@Schema(example = "2022-08-15")
 	private LocalDate hireDate;
 	
 	@Builder
