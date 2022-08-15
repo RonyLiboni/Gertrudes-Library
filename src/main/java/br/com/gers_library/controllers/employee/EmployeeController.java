@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/v1/admin/employee")
 @RequiredArgsConstructor
-@Tag(name = "Employee Endpoints", description = "You will be able to do all CRUD operations and get the cep with highest incidence.")
+@Tag(name = "Employee Endpoints", description = "Here, you will be able to do all CRUD operations and get the cep with highest incidence from employees.")
 public class EmployeeController {
 	
 	private final EmployeeService employeeService;
