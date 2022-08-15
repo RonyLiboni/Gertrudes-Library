@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.gers_library.configurations.RepositoryTestTemplate;
 import br.com.gers_library.entities.employee.Employee;
+import br.com.gers_library.repositories.employee.EmployeeRepository;
 import br.com.gers_library.util.EmployeeUtil;
 
 class EmployeeRepositoryTest extends RepositoryTestTemplate  {

@@ -1,4 +1,4 @@
-package br.com.gers_library.service.employee;
+package br.com.gers_library.service.customer;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +10,7 @@ import br.com.gers_library.entities.customer.Customer;
 import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
-import br.com.gers_library.repositories.CustomerRepository;
+import br.com.gers_library.repositories.customer.CustomerRepository;
 import br.com.gers_library.service.address.AddressService;
 import br.com.gers_library.service.template.ServiceTemplate;
 import lombok.RequiredArgsConstructor;

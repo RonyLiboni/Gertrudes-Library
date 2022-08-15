@@ -1,4 +1,4 @@
-package br.com.gers_library.repositories;
+package br.com.gers_library.repositories.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

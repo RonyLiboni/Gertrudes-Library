@@ -1,4 +1,4 @@
-package br.com.gers_library.repositories;
+package br.com.gers_library.repositories.employee;
 
 import java.util.List;
 

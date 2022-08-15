@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
-import br.com.gers_library.service.employee.CustomerService;
+import br.com.gers_library.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
