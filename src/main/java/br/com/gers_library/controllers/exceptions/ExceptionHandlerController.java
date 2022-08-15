@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.gers_library.entities.exception.FieldErrorsDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestControllerAdvice
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class ExceptionHandlerController {
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ApiResponse(responseCode= "400", description = "There was an error with the form you sent.")
 	public ResponseEntity<List<FieldErrorsDto>> formFieldsHasErrors(MethodArgumentNotValidException exception) {
 		List<FieldErrorsDto> fieldErrorsdto = new ArrayList<>();
 		
@@ -32,6 +34,7 @@ public class ExceptionHandlerController {
 	}
 	
 	@ExceptionHandler(IdNotFoundException.class)
+	@ApiResponse(responseCode= "404", description = "The id you informed doesn't exist.")
 	public ResponseEntity<String> idNotFound(IdNotFoundException e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
