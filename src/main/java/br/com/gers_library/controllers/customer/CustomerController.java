@@ -1,5 +1,7 @@
 package br.com.gers_library.controllers.customer;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
+import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 import br.com.gers_library.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 
@@ -52,6 +55,11 @@ public class CustomerController {
 	@PutMapping("/{id}")
 	public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long id, @RequestBody @Valid CustomerFormDto form) {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.updateCustomer(id, form));
+	}
+	
+	@GetMapping("/highest-incidence-cep")
+	public ResponseEntity<List<HighestIncidenceCepProjection>> getHighestIncidenceCep(){
+		return ResponseEntity.status(HttpStatus.OK).body(customerService.highestIncidenceCep());
 	}
 	
 }
