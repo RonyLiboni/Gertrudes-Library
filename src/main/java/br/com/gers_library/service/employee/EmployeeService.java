@@ -83,6 +83,9 @@ public class EmployeeService extends ServiceTemplate{
 	
 	public List<HighestIncidenceCepProjection> highestIncidenceCep() {
 		List<HighestIncidenceCepProjection> cepsOrderedByCountDesc = employeeRepository.getOrderedCepCount();
+		if (cepsOrderedByCountDesc.isEmpty())
+			return cepsOrderedByCountDesc;
+		
 		final int highestCepCount = cepsOrderedByCountDesc.get(0).getCepCount();
 		return cepsOrderedByCountDesc.stream()
 				.filter(orderedCep -> orderedCep.getCepCount() == highestCepCount)
