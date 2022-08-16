@@ -10,13 +10,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import br.com.gers_library.configurations.ControllerTemplateTestConfig;
+import br.com.gers_library.configurations.ControllerTestTemplate;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.util.CustomerUtil;
 import br.com.gers_library.util.EmployeeUtil;
 
-class ExceptionHandlerControllerTest extends ControllerTemplateTestConfig{
+class ExceptionHandlerControllerTest extends ControllerTestTemplate{
 		
 	private final String employeeUri="/v1/admin/employee";
 	private final String customerUri="/v1/admin/customer";

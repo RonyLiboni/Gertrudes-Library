@@ -5,10 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import br.com.gers_library.configurations.ControllerTemplateTestConfig;
+import br.com.gers_library.configurations.ControllerTestTemplate;
 import br.com.gers_library.util.CustomerUtil;
 
-class CustomerControllerTest extends ControllerTemplateTestConfig {
+class CustomerControllerTest extends ControllerTestTemplate {
 
 	private final String customerUri = "/v1/admin/customer";
 	private final String id = "/{id}";

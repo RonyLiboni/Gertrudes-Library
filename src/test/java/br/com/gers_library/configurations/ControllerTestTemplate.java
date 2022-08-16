@@ -18,7 +18,7 @@ import br.com.gers_library.repositories.employee.EmployeeRepository;
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
-public abstract class ControllerTemplateTestConfig {
+public abstract class ControllerTestTemplate {
 	
 	@Autowired
 	protected MockMvc mockMvc;

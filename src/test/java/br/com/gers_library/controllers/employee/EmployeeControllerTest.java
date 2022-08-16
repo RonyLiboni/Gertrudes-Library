@@ -5,10 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import br.com.gers_library.configurations.ControllerTemplateTestConfig;
+import br.com.gers_library.configurations.ControllerTestTemplate;
 import br.com.gers_library.util.EmployeeUtil;
 
-class EmployeeControllerTest extends ControllerTemplateTestConfig {
+class EmployeeControllerTest extends ControllerTestTemplate {
 
 	private final String employeeUri = "/v1/admin/employee";
 	private final String id = "/{id}";
