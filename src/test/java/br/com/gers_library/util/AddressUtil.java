@@ -7,7 +7,7 @@ public class AddressUtil {
 
 	public static Address buildValidatedAddress() {
 		return Address.builder()
-				.cep("01001-000")
+				.cep("01001000")
 				.city("São Paulo")
 				.district("SP")
 				.street("Praça da Sé")
@@ -18,7 +18,7 @@ public class AddressUtil {
 
 	public static ViaCepAddress buildViaCepAddress() {
 		return ViaCepAddress.builder()
-				.cep("01001-000")
+				.cep("01001000")
 				.bairro("Sé")
 				.complemento("lado ímpar")
 				.ddd("11")

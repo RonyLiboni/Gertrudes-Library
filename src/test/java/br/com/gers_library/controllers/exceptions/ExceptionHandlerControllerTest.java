@@ -101,7 +101,7 @@ class ExceptionHandlerControllerTest extends ControllerTemplateTestConfig{
 	@Test
 	public void employeeController_getDtoById_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders
-				.get(employeeUri+id,1L))
+				.get(employeeUri+id,-1L))
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
