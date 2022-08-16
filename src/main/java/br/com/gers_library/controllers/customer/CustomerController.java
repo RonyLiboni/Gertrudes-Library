@@ -60,7 +60,7 @@ public class CustomerController {
 	@DeleteMapping("/{id}")	
 	@Operation(summary = "Deletes an Customers by id.")
 	@ApiResponse(responseCode= "204", description = "The resource was deleted with success!")
-	public ResponseEntity<?> deleteById(Long id){
+	public ResponseEntity<?> deleteById(@PathVariable Long id){
 		customerService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

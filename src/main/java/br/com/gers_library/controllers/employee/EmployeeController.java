@@ -60,7 +60,7 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")	
 	@Operation(summary = "Deletes an Employees by id.")
 	@ApiResponse(responseCode= "204", description = "The resource was deleted with success!")
-	public ResponseEntity<?> deleteById(Long id){
+	public ResponseEntity<?> deleteById(@PathVariable Long id){
 		employeeService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
