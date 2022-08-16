@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import br.com.gers_library.service.employee.ServiceTestTemplate;
+import br.com.gers_library.configurations.ServiceTestTemplate;
 
 class DocumentCpfValidatorTest extends ServiceTestTemplate{
 	

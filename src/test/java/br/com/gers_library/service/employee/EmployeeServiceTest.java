@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import br.com.gers_library.configurations.ServiceTestTemplate;
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
 import br.com.gers_library.repositories.employee.EmployeeRepository;

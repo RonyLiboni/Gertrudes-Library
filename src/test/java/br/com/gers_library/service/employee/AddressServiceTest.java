@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
+import br.com.gers_library.configurations.ServiceTestTemplate;
 import br.com.gers_library.entities.library_user.Address;
 import br.com.gers_library.http.CepConsumerFeign;
 import br.com.gers_library.service.address.AddressService;
