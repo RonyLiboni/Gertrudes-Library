@@ -5,7 +5,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @DataJpaTest
-@ActiveProfiles("testes")
+@ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoryTestTemplate {
 
