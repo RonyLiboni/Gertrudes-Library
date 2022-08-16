@@ -5,41 +5,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.gers_library.configurations.ControllerTemplateTestConfig;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
 import br.com.gers_library.entities.employee.dto.EmployeeFormDto;
 import br.com.gers_library.util.CustomerUtil;
 import br.com.gers_library.util.EmployeeUtil;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test")
-class ExceptionHandlerControllerTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
-	@Autowired
-	private ObjectMapper objectMapper;
-	
+class ExceptionHandlerControllerTest extends ControllerTemplateTestConfig{
+		
 	private final String employeeUri="/v1/admin/employee";
-	private final String customerUri="/v1/admin/employee";
+	private final String customerUri="/v1/admin/customer";
 	private final String id="/{id}";
 		
 	@Test
-	void employeeFormDtoValidation_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{
+	void employeeFormDtoValidation_PostMapping_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{
 		ResultActions postResult = mockMvc.perform(MockMvcRequestBuilders
 						.post(employeeUri)
 						.content(objectMapper.writeValueAsString(new EmployeeFormDto()))
@@ -50,6 +34,16 @@ class ExceptionHandlerControllerTest {
 		
 		String postErrors = postResult.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 		
+		assertThat(postErrors).contains("fullName");
+		assertThat(postErrors).contains("documentCpf");
+		assertThat(postErrors).contains("jobTitle");
+		assertThat(postErrors).contains("hireDate");
+		assertThat(postErrors).contains("cep");
+		assertThat(postErrors).contains("streetNumber");
+	}
+	
+	@Test
+	void employeeFormDtoValidation_PutMapping_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{
 		ResultActions putResult = mockMvc.perform(MockMvcRequestBuilders
 				.put(employeeUri+id, -1L)
 				.content(objectMapper.writeValueAsString(new EmployeeFormDto()))
@@ -59,13 +53,6 @@ class ExceptionHandlerControllerTest {
 				.isBadRequest());
 		
 		String putErrors = putResult.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-			
-		assertThat(postErrors).contains("fullName");
-		assertThat(postErrors).contains("documentCpf");
-		assertThat(postErrors).contains("jobTitle");
-		assertThat(postErrors).contains("hireDate");
-		assertThat(postErrors).contains("cep");
-		assertThat(postErrors).contains("streetNumber");
 		
 		assertThat(putErrors).contains("fullName");
 		assertThat(putErrors).contains("documentCpf");
@@ -76,7 +63,7 @@ class ExceptionHandlerControllerTest {
 	}
 	
 	@Test
-	void customerFormDtoValidation_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{
+	void customerFormDtoValidation_PostMapping_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{
 		ResultActions postResult = mockMvc.perform(MockMvcRequestBuilders
 				.post(customerUri)
 				.content(objectMapper.writeValueAsString(new CustomerFormDto()))
@@ -86,7 +73,15 @@ class ExceptionHandlerControllerTest {
 				.isBadRequest());
 
 		String postErrors = postResult.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		
+
+		assertThat(postErrors).contains("fullName");
+		assertThat(postErrors).contains("documentCpf");
+		assertThat(postErrors).contains("cep");
+		assertThat(postErrors).contains("streetNumber");
+	}
+	
+	@Test
+	void customerFormDtoValidation_PutMapping_ShouldReturnBadRequestAndValidationErrors_WhenFormDtoHasInvalidFields() throws Exception{		
 		ResultActions putResult = mockMvc.perform(MockMvcRequestBuilders
 				.put(customerUri+id, -1L)
 				.content(objectMapper.writeValueAsString(new CustomerFormDto()))
@@ -96,37 +91,33 @@ class ExceptionHandlerControllerTest {
 				.isBadRequest());
 		
 		String putErrors = putResult.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		
-		assertThat(postErrors).contains("fullName");
-		assertThat(postErrors).contains("documentCpf");
-		assertThat(postErrors).contains("jobTitle");
-		assertThat(postErrors).contains("hireDate");
-		assertThat(postErrors).contains("cep");
-		assertThat(postErrors).contains("streetNumber");
-		
+	
 		assertThat(putErrors).contains("fullName");
 		assertThat(putErrors).contains("documentCpf");
-		assertThat(putErrors).contains("jobTitle");
-		assertThat(putErrors).contains("hireDate");
 		assertThat(putErrors).contains("cep");
 		assertThat(putErrors).contains("streetNumber");
 	}
 	
 	@Test
-	public void getDtoById_deleteById_UpdateCustomer_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {
-		mockMvc
-		.perform(MockMvcRequestBuilders
+	public void employeeController_getDtoById_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders
 				.get(employeeUri+id,1L))
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
-		
+	}
+	
+	@Test
+	public void employeeController_deleteById_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders
 				.delete(employeeUri+id, -1L))
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
-		
+	}
+	
+	@Test
+	public void employeeController_UpdateEmployee_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders
 				.put(employeeUri+id, -1L)
 				.content(objectMapper.writeValueAsString(EmployeeUtil.buildValidatedEmployeeFormDto()))
@@ -134,20 +125,28 @@ class ExceptionHandlerControllerTest {
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
-		
-		mockMvc
-		.perform(MockMvcRequestBuilders
+	}
+	
+	@Test
+	public void customerController_getDtoById_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {		
+		mockMvc.perform(MockMvcRequestBuilders
 				.get(customerUri+id,1L))
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
-		
+	}
+	
+	@Test
+	public void customerController_deleteById_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {		
 		mockMvc.perform(MockMvcRequestBuilders
 				.delete(customerUri+id, -1L))
 		.andExpect(MockMvcResultMatchers
 				.status()
 				.isNotFound());
-		
+	}
+	
+	@Test
+	public void customerController_getDtoById_deleteById_UpdateCustomer_ShouldReturnNotFound_WhenIdDoesntExist() throws Exception {		
 		mockMvc.perform(MockMvcRequestBuilders
 				.put(customerUri+id, -1L)
 				.content(objectMapper.writeValueAsString(CustomerUtil.buildValidatedCustomerFormDto()))
