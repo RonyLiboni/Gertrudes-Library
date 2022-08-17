@@ -1,4 +1,4 @@
-package br.com.gers_library.service.employee;
+package br.com.gers_library.service.address;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import br.com.gers_library.configurations.ServiceTestTemplate;
 import br.com.gers_library.entities.library_user.Address;
 import br.com.gers_library.http.CepConsumerFeign;
-import br.com.gers_library.service.address.AddressService;
 import br.com.gers_library.util.AddressUtil;
 
 class AddressServiceTest extends ServiceTestTemplate{

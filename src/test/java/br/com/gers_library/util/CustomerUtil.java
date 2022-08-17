@@ -1,5 +1,10 @@
 package br.com.gers_library.util;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
 import br.com.gers_library.entities.customer.Customer;
 import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.customer.dto.CustomerFormDto;
@@ -24,6 +29,10 @@ public class CustomerUtil {
 
 	public static CustomerDto buildCustomerDto() {
 		return new CustomerDto(buildValidatedEntity());
+	}
+	
+	public static Page<Customer> buildPageOfCustomer() {
+		return new PageImpl<>(List.of(buildValidatedEntity()));
 	}
 
 }
