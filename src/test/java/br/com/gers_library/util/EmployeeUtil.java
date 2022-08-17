@@ -1,6 +1,10 @@
 package br.com.gers_library.util;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import br.com.gers_library.entities.employee.Employee;
 import br.com.gers_library.entities.employee.dto.EmployeeDto;
@@ -28,6 +32,10 @@ public class EmployeeUtil {
 
 	public static EmployeeDto buildEmployeeDto() {
 		return new EmployeeDto(buildValidatedEntity());
+	}
+	
+	public static Page<Employee> buildPageOfEmployee() {
+		return new PageImpl<>(List.of(buildValidatedEntity()));
 	}
 
 }
