@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -36,10 +34,6 @@ class EmployeeServiceTest extends ServiceTestTemplate {
 	private EmployeeRepository employeeRepositoryMock;
 	@Mock
 	private AddressService addressServiceMock;
-	@Captor
-	private ArgumentCaptor<String> cepCaptor;
-	@Captor
-	private ArgumentCaptor<Employee> employeeCaptor;
 
 	@Test
 	void registerEmployee_ShouldReturnEntityDto_WhenEntityFormDtoHasAllFieldsValidated() {
