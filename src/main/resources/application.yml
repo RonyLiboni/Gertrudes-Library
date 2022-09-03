@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    password: ${DATABASE_PASSWORD:root}
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/gers-library-api?createDatabaseIfNotExist=TRUE}
+    username: ${DATABASE_USERNAME:root}
+  jpa:
+    hibernate:
+      ddl-auto: update

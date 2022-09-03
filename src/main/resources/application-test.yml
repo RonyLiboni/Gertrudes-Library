@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    password: ${DATABASE_PASSWORD:root}
+    url: jdbc:mysql://localhost:3306/gers-library-api-testes?createDatabaseIfNotExist=TRUE
+    username: ${DATABASE_USERNAME:root}
+  flyway:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
