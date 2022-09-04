@@ -6,24 +6,47 @@ services:
       MYSQL_ROOT_PASSWORD: root #senha
     ports: 
       - 3307:3306 # Porta do Host : Porta do container. essa especificacao faz o espelhamento do container no host
-    networks:
+    networks:  #adiciona a uma rede que eu escolher
       - ger-network
-    restart: always
+    restart: always #sempre que a instancia cair, ela vai reiniciar, tem outros parâmetros e é possivel editá-los
+    
+    healthcheck: #avalia saúde baseado no que passarmos de test
+      test: "curl --fail http://mysql-db:3306/ || exit 1" # Se o banco não estiver pronto para conexao entao ele nao passa no healthcheck
+      timeout: 5s #faz uma verificacao a cada 5 segundos até que a instancia esteja saudavel
+      retries: 10  # faz 10 tentativas
+    deploy:
+      resources:
+        limits: #limita os recursos que declararmos
+          memory: 512M
+    volumes: #local para persistencia dos dados do banco
+       - db_data:/var/lib/mysql
       
   app:
     image: ronaldliboni/ger-library:1.0
     container_name: ger-library
     depends_on: # so iniciar quando terminar de criar o mySql-db. OBS importante: o DB estar criado, não significa que está pronto para receber conexões
-      - mysql-db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/gers-library-api?createDatabaseIfNotExist=TRUE
+      mysql-db:
+        condition: service_healthy #só inicia a aplicação quando o healthcheck definido for satisfeito
+   
+    environment: #variaveis de ambiente
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/gers-library-api?createDatabaseIfNotExist=TRUE #utiliza a referencia do servico mysql-db para o IP do banco
     ports:
      - 9090:8080  # host:container
     networks:
       - ger-network
-    restart: on-failure
+    restart: on-failure #reinicia a aplicacao se der erro e ela cair
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+      resources:
+        limits:
+          memory: 512M
         
-networks:
+networks: #cria uma rede dentro do ambiente dos containers
   ger-network:
     driver: bridge
     
+volumes: #cria o local para persistir os dados
+  db_data:
+    driver: local
