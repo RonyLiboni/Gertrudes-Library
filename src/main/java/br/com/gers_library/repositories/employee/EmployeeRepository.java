@@ -12,7 +12,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	@Query(value = "SELECT cep, street, district, COUNT(cep) as cepCount "
 			+ "FROM employees "
-			+ "GROUP BY cep "
+			+ "GROUP BY cep , street, district "
 			+ "ORDER BY cepCount DESC ", nativeQuery = true)
 	 List<HighestIncidenceCepProjection> getOrderedCepCount();
 }
