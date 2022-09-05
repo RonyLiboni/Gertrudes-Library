@@ -21,6 +21,7 @@ Após iniciar o servidor da API acesse o swagger através do link abaixo:
 http://localhost:8080/swagger-ui.html
 
 #### Você pode utilizar os JSON pré-configurados no swagger ou testar com outros parâmetros.
+#### Esta aplicação está no docker-hub você pode utilizar o arquivo docker-compose que está na raiz deste projeto para não ter que mudar suas configurações do MySQL ou instalá-lo caso você não o tenha
 
 ## Tecnologias utilizadas
   - Java com Spring Boot
