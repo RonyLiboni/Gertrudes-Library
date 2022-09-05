@@ -12,7 +12,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	
 	@Query(value = "SELECT cep, street, district, COUNT(cep) as cepCount "
 			+ "FROM customers "
-			+ "GROUP BY cep , street, district "
+			+ "GROUP BY cep, street, district "
 			+ "ORDER BY cepCount DESC ", nativeQuery = true)
 	 List<HighestIncidenceCepProjection> getOrderedCepCount();
 }

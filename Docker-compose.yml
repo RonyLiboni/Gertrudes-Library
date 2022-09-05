@@ -26,8 +26,7 @@ services:
     container_name: ger-library
     depends_on: # so iniciar quando terminar de criar o mySql-db. OBS importante: o DB estar criado, não significa que está pronto para receber conexões
       mysql-db:
-        condition: service_healthy #só inicia a aplicação quando o healthcheck definido for satisfeito
-   
+        condition: service_healthy #só inicia a aplicação quando o healthcheck definido for satisfeito 
     environment: #variaveis de ambiente
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/gers-library-api?createDatabaseIfNotExist=TRUE #utiliza a referencia do servico mysql-db para o IP do banco
     ports:
@@ -47,6 +46,6 @@ networks: #cria uma rede dentro do ambiente dos containers
   ger-network:
     driver: bridge
     
-volumes: #cria o local para persistir os dados
+volumes: #cria o local para persistir os dados. Os dados ficam dentro de uma pasta na máquina host e arquivos são gerenciados pelo docker
   db_data:
     driver: local
