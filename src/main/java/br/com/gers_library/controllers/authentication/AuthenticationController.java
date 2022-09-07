@@ -14,7 +14,7 @@ import br.com.gers_library.service.token.TokenService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 	private final TokenService tokenService;
