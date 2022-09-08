@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-@Profile("Default")
+@Profile("default")
 public class WebSecurityConfiguration {
 	
 	private final UserRepository userRepository;
