@@ -13,6 +13,7 @@ Como primeiras funcionalidades Gertrudes pediu:
   - Versionamento do Banco de dados através do FlyWay Migrations.
   - Http Status codes adequados a cada resposta das controllers.
   - Testes automatizados da aplicação criada
+  - Segurança na API com Token JWT
 
 Você precisa ter o LOMBOK instalado na sua IDE para conseguir rodar a API.
 
@@ -20,13 +21,20 @@ Após iniciar o servidor da API acesse o swagger através do link abaixo:
 
 http://localhost:8080/swagger-ui.html
 
+#### Você precisa se autenticar no endpoint de Autenticação (Authentication Endpoint)
+#### Há um usuario com role de ADMIN. No swagger já virá pronto o JSON com esses dados, mas caso precise, estão abaixo.
+- username= rony
+- password= 123456
+
 #### Você pode utilizar os JSON pré-configurados no swagger ou testar com outros parâmetros.
 #### Esta aplicação está no docker-hub você pode utilizar o arquivo docker-compose que está na raiz deste projeto para não ter que mudar suas configurações do MySQL ou instalá-lo caso você não o tenha
 
 ## Tecnologias utilizadas
   - Java com Spring Boot
+  - Spring Security com Token JWT
   - Spring Cloud OpenFeign
   - Spring Data JPA
+  - Docker
   - Spring Validation
   - RestTemplate
   - Banco de dados MySQL
