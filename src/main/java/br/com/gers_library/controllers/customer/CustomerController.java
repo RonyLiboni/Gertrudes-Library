@@ -25,6 +25,8 @@ import br.com.gers_library.service.customer.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -37,44 +39,62 @@ public class CustomerController {
 	private final CustomerService customerService;
 	
 	@PostMapping
-	@Operation(summary = "Creates an Customer.")
-	@ApiResponse(responseCode= "201", description = "The resource was created with success!")
+	@Operation(summary = "Creates an Customer.", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "201", description = "The resource was created with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<CustomerDto> registerCustomer(@RequestBody @Valid CustomerFormDto form) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerService.registerCustomer(form));
 	}
 	
 	@GetMapping
-	@Operation(summary = "Gets all Customers.")
-	@ApiResponse(responseCode= "200", description = "The resources was got with success!")
+	@Operation(summary = "Gets all Customers.", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "200", description = "The resources was got with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<Page<CustomerDto>> getAllDto(@PageableDefault()@Parameter(hidden=true) Pageable page){
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.getAllDto(page));
 	}
 	
 	@GetMapping("/{id}")
-	@Operation(summary = "Gets an Customers by id.")
-	@ApiResponse(responseCode= "200", description = "The resource was got with success!")
+	@Operation(summary = "Gets an Customers by id.", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "200", description = "The resources was got with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<CustomerDto> getDtoById(@PathVariable Long id){
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.getDtoById(id));
 	}
 	
 	@DeleteMapping("/{id}")	
-	@Operation(summary = "Deletes an Customers by id.")
-	@ApiResponse(responseCode= "204", description = "The resource was deleted with success!")
+	@Operation(summary = "Deletes an Customers by id.", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "204", description = "The resource was deleted with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<?> deleteById(@PathVariable Long id){
 		customerService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@PutMapping("/{id}")
-	@Operation(summary = "Updates an Customers by id.")
-	@ApiResponse(responseCode= "200", description = "The resource was updated with success!")
+	@Operation(summary = "Updates an Customers by id.", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "200", description = "The resources was updated with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long id, @RequestBody @Valid CustomerFormDto form) {
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.updateCustomer(id, form));
 	}
 	
 	@GetMapping("/highest-incidence-cep")
-	@Operation(summary = "Get the cep with highest incidence")
-	@ApiResponse(responseCode= "200", description = "The cep with highest incidence was got with success!")
+	@Operation(summary = "Get the cep with highest incidence", security = { @SecurityRequirement(name = "bearer-key") })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode= "200", description = "The cep with highest incidence was got with success!"),
+		    @ApiResponse(responseCode= "403", description = "You don't have enough permissions to access this endpoint"),
+		})
 	public ResponseEntity<List<HighestIncidenceCepProjection>> getHighestIncidenceCep(){
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.highestIncidenceCep());
 	}
