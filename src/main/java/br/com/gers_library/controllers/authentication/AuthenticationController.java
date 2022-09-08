@@ -30,10 +30,10 @@ public class AuthenticationController {
 	@PostMapping
 	@Operation(summary = "Get a token through your username and password.")
 	@ApiResponses(value = {
-		    @ApiResponse(responseCode= "200", description = "The token was created with success!"),
+		    @ApiResponse(responseCode= "201", description = "The token was created with success!"),
 		    @ApiResponse(responseCode= "403", description = "You informed wrong username or password"),
 		})
 	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginFormDto form) {
-		return ResponseEntity.status(HttpStatus.OK).body(tokenService.createToken(form, authManager));
+		return ResponseEntity.status(HttpStatus.CREATED).body(tokenService.createToken(form, authManager));
 	}		
 }
