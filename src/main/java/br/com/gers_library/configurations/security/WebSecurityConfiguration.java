@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import br.com.gers_library.filters.TokenAuthenticationFilter;
 import br.com.gers_library.repositories.user.UserRepository;
 import br.com.gers_library.service.token.TokenService;
@@ -37,8 +36,9 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
             .authorizeRequests()
-            .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/**").permitAll()
-            .antMatchers("/v1/admin/**").hasAnyRole("ADMIN")
+            .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/**")
+            .permitAll()
+            .antMatchers("/v1/admin/**").hasRole("ADMIN")
     		.anyRequest().authenticated()
             .and()
             .csrf().disable()
