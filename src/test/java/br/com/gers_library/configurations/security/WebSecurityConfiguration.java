@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-@Profile("Default")
+@Profile("test")
 public class WebSecurityConfiguration {
 	
 	private final UserRepository userRepository;
@@ -39,10 +39,8 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
             .authorizeRequests()
-            .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/**")
+            .antMatchers("/**")
             .permitAll()
-            .antMatchers("/v1/admin/**").hasRole("ADMIN")
-    		.anyRequest().authenticated()
             .and()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
