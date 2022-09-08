@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 @Profile("test")
-public class WebSecurityConfiguration {
+public class WebSecurityConfigurationTest {
 	
 	private final UserRepository userRepository;
 	private final TokenService tokenService;
