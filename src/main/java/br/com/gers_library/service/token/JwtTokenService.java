@@ -17,7 +17,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
-public class TokenService {
+public class JwtTokenService {
 
 	@Value("${gerlibrary.jwt.expiration}")
 	private String expiration;
@@ -36,7 +36,8 @@ public class TokenService {
 
 	public UUID getUserId(String token) {
 		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
-		return UUID.fromString(claims.getSubject());
+		String id = claims.getSubject();
+		return UUID.fromString(id);
 	}
 	
 	public TokenDto createToken(LoginFormDto form, AuthenticationManager authManager) {

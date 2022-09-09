@@ -26,7 +26,7 @@ CREATE TABLE users_roles (
 
 
 INSERT INTO users (user_id, password, username) 
-VALUES ('15b53dce-32c5-475d-aa1c-7e0fa1682b24', '$2a$12$Ei0ZtHu1K37/RTMgP97Uiefw5up03sy6dy1EDjlH4wEglrxSi/v3q', 'rony');
+VALUES (UUID_TO_BIN('15b53dce-32c5-475d-aa1c-7e0fa1682b24'), '$2a$12$Ei0ZtHu1K37/RTMgP97Uiefw5up03sy6dy1EDjlH4wEglrxSi/v3q', 'rony');
 
 INSERT INTO users_roles (user_entity_user_id, roles_role_id)
-VALUES ('15b53dce-32c5-475d-aa1c-7e0fa1682b24', 1);
+VALUES (UUID_TO_BIN('15b53dce-32c5-475d-aa1c-7e0fa1682b24'), 1);

@@ -27,7 +27,8 @@ public class CustomerService extends ServiceTemplate{
 	private final AddressService addressService;
 
 	public CustomerDto registerCustomer(CustomerFormDto form) {
-		return new CustomerDto(saveInDataBase(Customer.builder()
+		return new CustomerDto(saveInDataBase(
+				Customer.builder()
 				.fullName(form.getFullName())
 				.documentCpf(letStringOnlyWithNumbers(form.getDocumentCpf()))
 				.address(addressService.buildAdress(letStringOnlyWithNumbers(form.getCep()),

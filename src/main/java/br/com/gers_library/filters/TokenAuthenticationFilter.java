@@ -9,17 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.gers_library.entities.user.UserEntity;
 import br.com.gers_library.repositories.user.UserRepository;
-import br.com.gers_library.service.token.TokenService;
+import br.com.gers_library.service.token.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 	
-	private final TokenService tokenService;
+	private final JwtTokenService jwtTokenService;
 	private final UserRepository userRepository;
 
 	@Override
@@ -27,7 +28,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		
 		String token = getToken(request);
-		if (tokenService.isTokenValid(token)) {
+		if (jwtTokenService.isTokenValid(token)) {
 			authenticateUser(token);
 		}
 		
@@ -41,7 +42,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 	}
 
 	private UserEntity getUser(String token) {
-		return userRepository.findById(tokenService.getUserId(token)).get();
+		return userRepository.findById(jwtTokenService.getUserId(token))
+				.orElseThrow(() -> new UsernameNotFoundException("The user was not found!"));
 	}
 
 	private String getToken(HttpServletRequest request) {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gers_library.entities.login.LoginFormDto;
 import br.com.gers_library.entities.token.TokenDto;
-import br.com.gers_library.service.token.TokenService;
+import br.com.gers_library.service.token.JwtTokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Tag(name = "Authentication Endpoint", description = "Here, you will be able authenticate and get a token with your permissions.")
 public class AuthenticationController {
-	private final TokenService tokenService;
+	private final JwtTokenService jwtTokenService;
 	private final AuthenticationManager authManager;
 
 	@PostMapping
@@ -34,6 +34,6 @@ public class AuthenticationController {
 		    @ApiResponse(responseCode= "403", description = "You informed wrong username or password"),
 		})
 	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid LoginFormDto form) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(tokenService.createToken(form, authManager));
+		return ResponseEntity.status(HttpStatus.CREATED).body(jwtTokenService.createToken(form, authManager));
 	}		
 }

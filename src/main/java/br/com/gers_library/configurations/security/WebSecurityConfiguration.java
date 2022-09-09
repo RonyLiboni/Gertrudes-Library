@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import br.com.gers_library.filters.TokenAuthenticationFilter;
 import br.com.gers_library.repositories.user.UserRepository;
-import br.com.gers_library.service.token.TokenService;
+import br.com.gers_library.service.token.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfiguration {
 	
 	private final UserRepository userRepository;
-	private final TokenService tokenService;
+	private final JwtTokenService jwtTokenService;
 	
 	@Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,7 +46,7 @@ public class WebSecurityConfiguration {
             .and()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-    		.and().addFilterBefore(new TokenAuthenticationFilter(tokenService, userRepository), UsernamePasswordAuthenticationFilter.class);
+    		.and().addFilterBefore(new TokenAuthenticationFilter(jwtTokenService, userRepository), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 	
