@@ -22,7 +22,7 @@ services:
        - db_data:/var/lib/mysql
       
   app:
-    image: ronaldliboni/ger-library:1.0
+    image: ronaldliboni/ger-library:2.0
     container_name: ger-library
     depends_on: # so iniciar quando terminar de criar o mySql-db. OBS importante: o DB estar criado, não significa que está pronto para receber conexões
       mysql-db:
