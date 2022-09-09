@@ -30,7 +30,7 @@ services:
     environment: #variaveis de ambiente
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/gers-library-api?createDatabaseIfNotExist=TRUE #utiliza a referencia do servico mysql-db para o IP do banco
     ports:
-     - 9090:8080  # host:container
+     - 8080:8080  # host:container
     networks:
       - ger-network
     restart: on-failure #reinicia a aplicacao se der erro e ela cair
