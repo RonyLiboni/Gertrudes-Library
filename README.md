@@ -19,7 +19,7 @@ Você precisa ter o LOMBOK instalado na sua IDE para conseguir rodar a API.
 
 Após iniciar o servidor da API acesse o swagger através do link abaixo:
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui/index.html#/
 
 #### Você precisa se autenticar no endpoint de Autenticação (Authentication Endpoint)
 #### Há um usuario com role de ADMIN. No swagger já virá pronto o JSON com esses dados, mas caso precise, estão abaixo.
