@@ -10,9 +10,9 @@ import br.com.gers_library.repositories.projections.HighestIncidenceCepProjectio
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	
-	@Query(value = "SELECT cep, street, district, COUNT(cep) as cepCount "
-			+ "FROM customers "
-			+ "GROUP BY cep, street, district "
-			+ "ORDER BY cepCount DESC ", nativeQuery = true)
+	@Query(value = "SELECT cep, street, district, COUNT(cep) as cepCount FROM customers "
+			+ "GROUP BY cep , street, district "
+			+ "HAVING cepCount = (SELECT COUNT(cep) as cepCount FROM customers GROUP BY cep ORDER BY cepCount DESC LIMIT 1)", 
+			nativeQuery = true)
 	 List<HighestIncidenceCepProjection> getOrderedCepCount();
 }

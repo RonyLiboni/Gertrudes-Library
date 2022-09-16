@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -19,11 +18,9 @@ import br.com.gers_library.entities.customer.Customer;
 import br.com.gers_library.entities.customer.dto.CustomerDto;
 import br.com.gers_library.entities.exception.IdNotFoundException;
 import br.com.gers_library.repositories.customer.CustomerRepository;
-import br.com.gers_library.repositories.projections.HighestIncidenceCepProjection;
 import br.com.gers_library.service.address.AddressService;
 import br.com.gers_library.util.AddressUtil;
 import br.com.gers_library.util.CustomerUtil;
-import br.com.gers_library.util.HighestIncidenceCepProjectionTestUtil;
 import br.com.gers_library.util.Util;
 
 class CustomerServiceTest extends ServiceTestTemplate {
@@ -83,27 +80,6 @@ class CustomerServiceTest extends ServiceTestTemplate {
 				.thenReturn(new ArrayList<>());
 			
 		assertThat(customerService.highestIncidenceCep()).isEmpty();
-	}
+	}	
 	
-	@Test
-	void highestIncidenceCep_ShouldReturnAListWithOneEntity_WhenThereIsOnlyOneHighestIncidenceCep() {
-		Mockito.when(customerRepositoryMock.getOrderedCepCount())
-				.thenReturn(HighestIncidenceCepProjectionTestUtil.buildListWithOneCepCountAsTheHighest());
-		
-		List<HighestIncidenceCepProjection> highestIncidenceCep = customerService.highestIncidenceCep();
-		
-		assertThat(HighestIncidenceCepProjectionTestUtil.buildListWithOneCepCountAsTheHighest().size()).isEqualTo(3);//The mock returns a list with 3 entities
-		assertThat(highestIncidenceCep.size()).isEqualTo(1); // Only one entity is left after the method 
-	}
-	
-	@Test
-	void highestIncidenceCep_ShouldReturnAListWithTwoEntities_WhenThereAreTwoOrMoreHighestIncidenceCep() {
-		Mockito.when(customerRepositoryMock.getOrderedCepCount())
-				.thenReturn(HighestIncidenceCepProjectionTestUtil.buildListWithTwoCepCountAsTheHighest());
-		
-		List<HighestIncidenceCepProjection> highestIncidenceCep = customerService.highestIncidenceCep();
-		
-		assertThat(HighestIncidenceCepProjectionTestUtil.buildListWithTwoCepCountAsTheHighest().size()).isEqualTo(3);//The mock returns a list with 3 entities
-		assertThat(highestIncidenceCep.size()).isEqualTo(2); // Only two entities are left after the method because their cepCount are the highest and are equal 
-	}
 }
