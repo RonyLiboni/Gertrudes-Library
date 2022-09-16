@@ -1,7 +1,6 @@
 package br.com.gers_library.service.customer;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -79,13 +78,6 @@ public class CustomerService extends ServiceTemplate{
 	}
 	
 	public List<HighestIncidenceCepProjection> highestIncidenceCep() {
-		List<HighestIncidenceCepProjection> cepsOrderedByCountDesc = customerRepository.getOrderedCepCount();
-		if (cepsOrderedByCountDesc.isEmpty())
-			return cepsOrderedByCountDesc;
-		
-		final int highestCepCount = cepsOrderedByCountDesc.get(0).getCepCount();
-		return cepsOrderedByCountDesc.stream()
-				.filter(orderedCep -> orderedCep.getCepCount() == highestCepCount)
-				.collect(Collectors.toList());
+		return customerRepository.getOrderedCepCount();
 	}
 }
